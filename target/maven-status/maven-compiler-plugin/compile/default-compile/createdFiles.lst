@@ -1,0 +1,7 @@
+pages\model\WebLabel.class
+pages\model\WebPage.class
+pages\model\WebTextBox.class
+utils\WebDriverFactory.class
+utils\Pause_Popup.class
+pages\model\WebButton.class
+utils\DriverManager.class
