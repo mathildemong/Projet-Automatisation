@@ -1,36 +1,63 @@
 # Projet-Automatisation
 
-## Introduction
-Ce projet a pour but d'automatiser des tests pour des applications web à l'aide de Selenium et Gherkin.
-
-## Technologies Utilisées
-- **Java** : Langage de programmation principal.
-- **Selenium** : Framework pour automatiser les tests de navigation web.
-- **Gherkin** : Langage de spécification pour écrire des scénarios de tests.
+## Prerequisites
+- Java JDK 8 or higher
+- Maven 3.6 or higher
+- An IDE (e.g., IntelliJ, Eclipse)
 
 ## Installation
-1. Clonez le dépôt :  
-   `git clone https://github.com/mathildemong/Projet-Java-Selenium-Gherkin__492__0.git`
-2. Allez dans le répertoire du projet :  
-   `cd Projet-Java-Selenium-Gherkin__492__0`
-3. Assurez-vous d'avoir les dépendances nécessaires dans votre fichier `pom.xml`.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/mathildemong/Projet-Java-Selenium-Gherkin__492__0.git
+   cd Projet-Java-Selenium-Gherkin__492__0
+   ```
+2. Install the dependencies:
+   ```bash
+   mvn install
+   ```
 
-## Exécution des Tests
-Pour exécuter les tests, utilisez la commande suivante : 
+## Project Structure
 ```
-./mvnw test
+Projet-Java-Selenium-Gherkin__492__0/
+├── src/
+│   ├── main/
+│   └── test/
+└── pom.xml
 ```
 
-## Contribution
-Pour contribuer, veuillez suivre les étapes suivantes :
-1. Forkez le projet.
-2. Créez une nouvelle branche (`git checkout -b feature/nouvelle-fonctionnalite`).
-3. Committez vos modifications (`git commit -m 'Ajout d'une nouvelle fonctionnalité'`).
-4. Poussez vers la branche (`git push origin feature/nouvelle-fonctionnalite`).
-5. Ouvrez une Pull Request.
+## Technologies
+- Java
+- Selenium WebDriver
+- Cucumber
+- TestNG
 
-## License
-Ce projet est sous license MIT. Consultez le fichier `LICENSE` pour plus de détails.
+## Configuration
+- Update `config.properties` with your environment settings.
+- Specify the browser and environment in the corresponding configuration files.
 
-## Auteurs
-- Mathilde Mong
+## Test Execution
+- To run tests, use the command:
+   ```bash
+   mvn test
+   ```
+
+## Examples
+- Example feature files can be found in the `src/test/resources/features` directory.
+
+## Page Object Model
+- Implement your page classes in the `src/main/java/pages` directory.
+
+## Cucumber Tests
+- Cucumber tests are defined in the `src/test/resources/features` folder.
+
+## API Tests
+- To run API tests, utilize the `src/test/java/api` directory for the implementation.
+
+## Troubleshooting
+- Ensure all dependencies are correctly installed.
+- Check the logs for errors during test execution.
+
+## Resources
+- [Selenium Documentation](https://www.selenium.dev/documentation/en/)
+- [Cucumber Documentation](https://cucumber.io/docs/guides)
+- [Maven Documentation](https://maven.apache.org/guides/)
