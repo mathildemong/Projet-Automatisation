@@ -8,6 +8,34 @@ Projet d'automatisation web (Selenium) et API (REST-assured), avec des scénario
 - Maven 3.6 or higher
 - An IDE (e.g., IntelliJ, Eclipse)
 
+## Installation Java et Maven sur Windows (via Chocolatey)
+
+Si tu es sous Windows (par exemple avec Git Bash / MINGW64) et que `mvn` n'est pas reconnu, tu peux installer Java et Maven via [Chocolatey](https://chocolatey.org/) :
+
+1. Ouvre **PowerShell en tant qu'administrateur** (clic droit > "Exécuter en tant qu'administrateur").
+2. Autorise l'exécution du script d'installation pour cette session :
+   ```powershell
+   Set-ExecutionPolicy Bypass -Scope Process -Force
+   ```
+3. Installe Chocolatey avec le script officiel :
+   ```powershell
+   [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+   ```
+4. Ferme puis rouvre PowerShell (toujours en administrateur) et vérifie l'installation :
+   ```powershell
+   choco -v
+   ```
+5. Installe Maven (Chocolatey installe aussi un JDK compatible si besoin) :
+   ```powershell
+   choco install maven -y
+   ```
+6. Ferme complètement ton terminal (PowerShell et/ou Git Bash) et rouvre-le pour que le PATH soit rechargé.
+7. Vérifie que tout fonctionne — **attention, la commande s'appelle `mvn`, pas `maven`** :
+   ```bash
+   mvn -version
+   ```
+   Tu dois voir la version de Maven ainsi que la version de Java détectée (17+ requis).
+
 ## Installation
 
 1. Clone the repository:
