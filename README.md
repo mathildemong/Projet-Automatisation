@@ -10,31 +10,31 @@ Projet d'automatisation web (Selenium) et API (REST-assured), avec des scénario
 
 ## Installation Java et Maven sur Windows (via Chocolatey)
 
-Si tu es sous Windows (par exemple avec Git Bash / MINGW64) et que `mvn` n'est pas reconnu, tu peux installer Java et Maven via [Chocolatey](https://chocolatey.org/) :
+Sous Windows (par exemple avec Git Bash / MINGW64) et que `mvn` n'est pas reconnu, installez Java et Maven via [Chocolatey](https://chocolatey.org/) :
 
-1. Ouvre **PowerShell en tant qu'administrateur** (clic droit > "Exécuter en tant qu'administrateur").
-2. Autorise l'exécution du script d'installation pour cette session :
+1. Ouvrir **PowerShell en tant qu'administrateur** (clic droit > "Exécuter en tant qu'administrateur").
+2. Autorisez l'exécution du script d'installation pour cette session :
    ```powershell
    Set-ExecutionPolicy Bypass -Scope Process -Force
    ```
-3. Installe Chocolatey avec le script officiel :
+3. Installez Chocolatey avec le script officiel :
    ```powershell
    [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
    ```
-4. Ferme puis rouvre PowerShell (toujours en administrateur) et vérifie l'installation :
+4. Fermez puis rouvrez PowerShell (toujours en administrateur) et vérifiez l'installation :
    ```powershell
    choco -v
    ```
-5. Installe Maven (Chocolatey installe aussi un JDK compatible si besoin) :
+5. Installez Maven (Chocolatey installe aussi un JDK compatible si besoin) :
    ```powershell
    choco install maven -y
    ```
-6. Ferme complètement ton terminal (PowerShell et/ou Git Bash) et rouvre-le pour que le PATH soit rechargé.
-7. Vérifie que tout fonctionne — **attention, la commande s'appelle `mvn`, pas `maven`** :
+6. Fermez complètement le terminal (PowerShell et/ou Git Bash) et rouvrez-le pour que le PATH soit rechargé.
+7. Vérifiez que tout fonctionne — **attention, la commande s'appelle `mvn`, pas `maven`** :
    ```bash
    mvn -version
    ```
-   Tu dois voir la version de Maven ainsi que la version de Java détectée (17+ requis).
+   On dois voir la version de Maven ainsi que la version de Java détectée (17+ requis).
 
 ## Installation
 
@@ -110,9 +110,9 @@ Les rapports Cucumber sont générés dans `target/cucumber-reports/` (`cucumber
 
 ## Troubleshooting
 
-- Vérifie que le JDK 17+ et Maven sont bien installés (`java -version`, `mvn -version`).
-- En cas d'erreur liée au driver, WebDriverManager télécharge le driver au premier lancement : vérifie ta connexion internet.
-- Consulte les logs Maven (`mvn test -X` pour plus de détails) en cas d'échec.
+- Vérifiez que le JDK 17+ et Maven sont bien installés (`java -version`, `mvn -version`).
+- En cas d'erreur liée au driver, WebDriverManager télécharge le driver au premier lancement : vérifiez la connexion internet.
+- Consultez les logs Maven (`mvn test -X` pour plus de détails) en cas d'échec.
 
 ## Resources
 
