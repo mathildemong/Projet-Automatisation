@@ -1,6 +1,6 @@
 # Projet-Automatisation
 
-Projet d'automatisation web (Selenium) et API (REST-assured), avec des scénarios de test écrits en Gherkin et exécutés via Cucumber + JUnit 5.
+A web (Selenium) and API (REST-assured) automation project, with test scenarios written in Gherkin and executed via Cucumber and JUnit 5.
 
 ## Prerequisites
 
@@ -8,42 +8,42 @@ Projet d'automatisation web (Selenium) et API (REST-assured), avec des scénario
 - Maven 3.6 or higher
 - An IDE (e.g., IntelliJ, Eclipse)
 
-## Installation Java et Maven sur Windows (via Chocolatey)
+## Installing Java and Maven on Windows (via Chocolatey)
 
-Sous Windows (par exemple avec Git Bash / MINGW64) et que `mvn` n'est pas reconnu, installez Java et Maven via [Chocolatey](https://chocolatey.org/) :
+On Windows (for example with Git Bash / MINGW64), if `mvn` is not recognized, Java and Maven can be installed via [Chocolatey](https://chocolatey.org/):
 
-1. Ouvrir **PowerShell en tant qu'administrateur** (clic droit > "Exécuter en tant qu'administrateur").
-2. Autorisez l'exécution du script d'installation pour cette session :
+1. PowerShell should be opened **as administrator** (right-click > "Run as administrator").
+2. Script execution should be allowed for the current session:
    ```powershell
    Set-ExecutionPolicy Bypass -Scope Process -Force
    ```
-3. Installez Chocolatey avec le script officiel :
+3. Chocolatey should be installed using the official script:
    ```powershell
    [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
    ```
-4. Fermez puis rouvrez PowerShell (toujours en administrateur) et vérifiez l'installation :
+4. PowerShell should be closed and reopened (still as administrator), then the installation can be verified:
    ```powershell
    choco -v
    ```
-5. Installez Maven (Chocolatey installe aussi un JDK compatible si besoin) :
+5. Maven can then be installed (Chocolatey also installs a compatible JDK if needed):
    ```powershell
    choco install maven -y
    ```
-6. Fermez complètement le terminal (PowerShell et/ou Git Bash) et rouvrez-le pour que le PATH soit rechargé.
-7. Vérifiez que tout fonctionne — **attention, la commande s'appelle `mvn`, pas `maven`** :
+6. The terminal (PowerShell and/or Git Bash) should be fully closed and reopened so the PATH is reloaded.
+7. The installation can be verified — **note that the command is `mvn`, not `maven`**:
    ```bash
    mvn -version
    ```
-   On dois voir la version de Maven ainsi que la version de Java détectée (17+ requis).
+   The Maven version and detected Java version (17+ required) should be displayed.
 
 ## Installation
 
-1. Clone the repository:
+1. The repository can be cloned:
    ```bash
    git clone https://github.com/mathildemong/Projet-Automatisation.git
    cd Projet-Automatisation
    ```
-2. Install the dependencies:
+2. Dependencies can be installed:
    ```bash
    mvn install
    ```
@@ -59,11 +59,11 @@ Projet-Automatisation/
 │   └── test/
 │       ├── java/
 │       │   ├── DemoQATest2.java
-│       │   ├── api/         # ApiTest, ApiTest2 (tests API avec REST-assured)
-│       │   ├── runners/     # TestRunner (point d'entrée Cucumber)
+│       │   ├── api/         # ApiTest, ApiTest2 (API tests using REST-assured)
+│       │   ├── runners/     # TestRunner (Cucumber entry point)
 │       │   └── steps/       # StepDefinitions
 │       └── resources/
-│           └── features/    # Scenario_Correction.feature (scénarios Gherkin)
+│           └── features/    # Scenario_Correction.feature (Gherkin scenarios)
 └── pom.xml
 ```
 
@@ -71,48 +71,48 @@ Projet-Automatisation/
 
 - Java 17
 - Selenium WebDriver 4.38.0
-- WebDriverManager 6.3.3 (télécharge et configure automatiquement le driver Chrome/Firefox correspondant, sans installation manuelle)
+- WebDriverManager 6.3.3 (automatically downloads and configures the matching Chrome/Firefox driver, with no manual installation required)
 - Cucumber 7.32.0
 - JUnit 5 (Jupiter) + JUnit Platform Suite
-- REST-assured 5.5.6 (tests API)
+- REST-assured 5.5.6 (API tests)
 - SLF4J (logging)
 
 ## Configuration
 
-Le driver de navigateur est géré automatiquement par **WebDriverManager** via la classe `utils/WebDriverFactory.java` — aucune configuration manuelle du binaire ChromeDriver n'est nécessaire.
+The browser driver is handled automatically by **WebDriverManager** through the `utils/WebDriverFactory.java` class — no manual configuration of the ChromeDriver binary is required.
 
 ## Test Execution
 
-Pour lancer l'ensemble des tests (Cucumber + JUnit) :
+All tests (Cucumber + JUnit) can be run with:
 
 ```bash
 mvn test
 ```
 
-Les rapports Cucumber sont générés dans `target/cucumber-reports/` (`cucumber.html` et `cucumber.json`), configurés dans `runners/TestRunner.java`.
+Cucumber reports are generated in `target/cucumber-reports/` (`cucumber.html` and `cucumber.json`), as configured in `runners/TestRunner.java`.
 
 ## Examples
 
-- Le scénario d'exemple `Scenario_Correction.feature` (dans `src/test/resources/features`) remplit un formulaire sur DemoQA (section "Text Box") et vérifie sa soumission.
+- The example scenario `Scenario_Correction.feature` (in `src/test/resources/features`) fills out a form on DemoQA (the "Text Box" section) and verifies its submission.
 
 ## Page Object Model
 
-- Les classes de pages sont implémentées dans `src/main/java/pages/model` (`WebButton`, `WebLabel`, `WebPage`, `WebTextBox`).
+- Page classes are implemented in `src/main/java/pages/model` (`WebButton`, `WebLabel`, `WebPage`, `WebTextBox`).
 
 ## Cucumber Tests
 
-- Les steps sont définis dans `src/test/java/steps/StepDefinitions.java`.
-- Le runner Cucumber (`src/test/java/runners/TestRunner.java`) associe les features aux steps via `@SelectClasspathResource("features")` et `GLUE_PROPERTY_NAME = "steps, hooks"`.
+- Steps are defined in `src/test/java/steps/StepDefinitions.java`.
+- The Cucumber runner (`src/test/java/runners/TestRunner.java`) links features to steps via `@SelectClasspathResource("features")` and `GLUE_PROPERTY_NAME = "steps, hooks"`.
 
 ## API Tests
 
-- Les tests API (REST-assured) se trouvent dans `src/test/java/api/` (`ApiTest.java`, `ApiTest2.java`).
+- API tests (REST-assured) can be found in `src/test/java/api/` (`ApiTest.java`, `ApiTest2.java`).
 
 ## Troubleshooting
 
-- Vérifiez que le JDK 17+ et Maven sont bien installés (`java -version`, `mvn -version`).
-- En cas d'erreur liée au driver, WebDriverManager télécharge le driver au premier lancement : vérifiez la connexion internet.
-- Consultez les logs Maven (`mvn test -X` pour plus de détails) en cas d'échec.
+- It should be verified that JDK 17+ and Maven are properly installed (`java -version`, `mvn -version`).
+- If a driver-related error occurs, WebDriverManager downloads the driver on first launch, so an internet connection should be checked.
+- Maven logs (`mvn test -X` for more detail) should be consulted in case of failure.
 
 ## Resources
 
