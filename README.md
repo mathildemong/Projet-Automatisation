@@ -98,6 +98,7 @@ Cucumber reports are generated in `target/cucumber-reports/` (`cucumber.html` an
 ## Page Object Model
 
 - Page classes are implemented in `src/main/java/pages/model` (`WebButton`, `WebLabel`, `WebPage`, `WebTextBox`).
+- `WebButton.Click` scrolls the target element into view and falls back to a JavaScript click if a normal click is intercepted by an overlapping element (see Troubleshooting).
 
 ## Cucumber Tests
 
@@ -113,6 +114,19 @@ Cucumber reports are generated in `target/cucumber-reports/` (`cucumber.html` an
 - It should be verified that JDK 17+ and Maven are properly installed (`java -version`, `mvn -version`).
 - If a driver-related error occurs, WebDriverManager downloads the driver on first launch, so an internet connection should be checked.
 - Maven logs (`mvn test -X` for more detail) should be consulted in case of failure.
+- **Browser window not visible on Windows**: if `chrome.exe` and `chromedriver.exe` appear in Task Manager (Details tab) while running `mvn test`, but no visible Chrome window ever shows up, this is a known issue with the `--start-maximized` startup flag on some Windows configurations (particularly with display scaling enabled) — it can cause the window to render off-screen or with zero size. The fix applied in `utils/DriverManager.java` is to drop `--start-maximized` and instead set an explicit window position and size, both as Chrome arguments and via `webDriver.manage().window()`, after the driver is created:
+  ```java
+  ChromeOptions options = new ChromeOptions();
+  options.addArguments("--disable-notifications");
+  options.addArguments("--window-position=0,0");
+  options.addArguments("--window-size=1280,800");
+
+  WebDriver webDriver = new ChromeDriver(options);
+  webDriver.manage().window().setPosition(new org.openqa.selenium.Point(0, 0));
+  webDriver.manage().window().setSize(new org.openqa.selenium.Dimension(1280, 800));
+  ```
+- A `Pause_Popup.showContinuePopup()` call (see `utils/Pause_Popup.java`) can be added at the end of a step definition to pause execution with a Swing dialog, which is useful for visually confirming the browser window during a run before it closes.
+- **`element click intercepted` error on the submit button**: on some window sizes, DemoQA's footer can overlap the "submit" button, causing Selenium to throw `ElementClickInterceptedException`. This is handled in `pages/model/WebButton.java`: the element is first scrolled to the center of the viewport (`scrollIntoView({block: 'center'})`), and if the click is still intercepted, a JavaScript click (`arguments[0].click()`) is used as a fallback, since it bypasses the visual overlap entirely.
 
 ## Resources
 
